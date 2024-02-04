@@ -50,3 +50,31 @@ class ExpenseTrackerApp(tk.Tk):
         self.date_entry = tk.Entry(self.frame_input, font=("Helvetica", 12), width=15)
         self.date_entry.grid(row=0, column=7, padx=5)
 
+        self.add_button = tk.Button(self, text="Add Expense", command=self.add_expense)
+        self.add_button.pack(pady=5)
+
+        self.frame_list = tk.Frame(self)
+        self.frame_list.pack(pady=10)
+
+        self.scrollbar = tk.Scrollbar(self.frame_list)
+        self.scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
+
+        self.expense_listbox = tk.Listbox(self.frame_list, font=("Helvetica", 12), width=70, yscrollcommand=self.scrollbar.set)
+        self.expense_listbox.pack(pady=5)
+
+        self.scrollbar.config(command=self.expense_listbox.yview)
+
+        self.edit_button = tk.Button(self, text="Edit Expense", command=self.edit_expense)
+        self.edit_button.pack(pady=5)
+
+        self.delete_button = tk.Button(self, text="Delete Expense", command=self.delete_expenses)
+        self.delete_button.pack(pady=5)
+
+        self.total_label = tk.Label(self, text="Total Expenses:", font=("Helvetica", 12))
+        self.total_label.pack(pady=5)
+
+        self.show_chart_button = tk.Button(self, text="Show Expenses Chart", command=self.show_expenses_chart)
+        self.show_chart_button.pack(pady=5)
+
+        self.update_total_label()
+
